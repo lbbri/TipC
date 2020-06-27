@@ -14,6 +14,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
+@property (weak, nonatomic) IBOutlet UILabel *billLabel;
+@property (weak, nonatomic) IBOutlet UISlider *partySlider;
 
 @end
 
@@ -36,9 +38,14 @@
     double tip = tipPercentage * bill;
     double total = bill + tip;
     
+    double party = round(self.partySlider.value);
+    double tpp = total/party;
+    
+    self.billLabel.text = [NSString stringWithFormat:@"$%.2f", bill];
     self.tipLabel.text = [NSString stringWithFormat:@"$%.2f", tip];
     
-    self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", total];
+    self.totalLabel.text = [NSString stringWithFormat:@"$%.2f / %.0f = $%.2f",total, party, tpp];
+    //self.totalLabel.text = [NSString stringWithFormat:@"$%.2f", total];
 
        
     
